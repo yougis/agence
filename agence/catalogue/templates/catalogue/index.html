@@ -1,0 +1,12 @@
+{% if all_scene_by_cie %}
+    <ul>
+    {% for company in all_scene_by_cie %}
+        <h1>{{ company.name }}</h1>
+	{% for scene in company.scene_set.all %}
+		<li><a href="/{{ scene.id }}/">{{ scene.title }}</a></li>
+	{% endfor %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p> Aucun spectacle n'est disponible.</p>
+{% endif %}
