@@ -22,7 +22,6 @@ class Scene(models.Model):
     light_price = models.IntegerField(blank=True, null=True)
     light_nb_people = models.IntegerField(blank=True, null=True)
     teazer_url = models.CharField(blank=True, max_length=200, null=True)
-    disponibility = models.CharField(blank=True, max_length=200, null=True)
 
     def __unicode__(self):             
         return self.title

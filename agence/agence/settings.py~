@@ -63,8 +63,7 @@ DATABASES = {
          'NAME': 'qretali_agence',
          'USER': 'qretali',
          'PASSWORD': 'agence',
-         'HOST': '127.0.0.1',
-         'PORT': '5432',
+         'HOST': 'postgresql1.alwaysdata.com',
     }
 }
 
