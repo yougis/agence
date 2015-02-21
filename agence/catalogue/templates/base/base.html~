@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>L'ageNCe</title>
+    {% load staticfiles %}
+    {% block css %}
+    {% endblock css %}   
+  </head>
+  <body>
+    <div id="content">
+        {% block content %}
+        {% endblock content %}
+	<li><a href="{% url 'catalog:index' %}">retour au catalogue</a></li>
+    </div>
+    <div id="footer">        
+        {% block js %}
+        {% endblock js %}
+      </div>
+    </div>
+  </body>
+</html>

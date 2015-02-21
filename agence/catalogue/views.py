@@ -1,15 +1,25 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-
-
+from django.shortcuts import get_object_or_404, render
 from catalogue.models import Company, Scene
+from photologue.models import Gallery, Photo
 
 
-def index(request):
-    all_scene_by_cie = Company.objects.order_by('name')
-    context = {'all_scene_by_cie': all_scene_by_cie}
-    return render(request, 'catalogue/index.html', context)
+def index(request):   
+    company_list = Company.objects.order_by('name')
+    return render(request, 'catalogue/index.html', {'company_list':  company_list})
 
+def detail_company(request, company_id):
+    company = get_object_or_404(Company,pk=company_id)
+    try:
+       gallery = Gallery.objects.get(pk=company.photo_gallery_id)
+    except Gallery.DoesNotExist:
+       gallery = None
+    return render(request, 'catalogue/detail.html', {'company': company, 'gallery': gallery})
 
-def detail(request, scene_id):
-    return HttpResponse("vous regardez le spectacle %s." % scene_id)
+def detail_scene(request, scene_id):
+    scene = get_object_or_404(Scene, pk=scene_id)
+    try:
+       gallery = Gallery.objects.get(pk=scene.photo_gallery_id)
+    except Gallery.DoesNotExist:
+       gallery = None
+   
+    return render(request, 'scene/detail.html', {'scene':scene, 'gallery': gallery})

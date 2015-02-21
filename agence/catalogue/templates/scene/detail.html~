@@ -1,0 +1,48 @@
+{% extends "./base/base.html" %}
+
+{% block content %}
+
+		<h1>{{ scene.title }}</h1>
+		{% if scene.photo_gallery_id %}
+			{% for photo in gallery.public %}
+			<a href="{{ photo.get_absolute_url }}">
+			     <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+			</a>
+	       		{% endfor %}
+		{% endif %}
+		{% if scene.synops %}
+		<p>{{ scene.synops }}</p>
+		{% endif %}
+
+		{% if scene.scene_cat %}
+			{% for categories in scene.scene_cat.all %}
+    			<p>{{ categories }}</p>
+			{% endfor %}
+		{% endif %}
+
+		{% if scene.duration %}
+		<p>{{ scene.duration.hour }} h et {{ scene.duration.minute }} min ( {{ scene.duration}} )</p>
+		{% endif %}
+		{% if scene.interpret %}
+		<p>{{ scene.interpret }}</p>
+		{% endif %}
+		{% if scene.teazer_url %}
+		<p>{{ scene.teazer_url }}</p>
+		{% endif %}
+		{% if scene.disponibility %}
+		<p>{{ scene.disponibility }}</p>
+		{% endif %}
+		{% if scene.dossier_presse %}
+		<a href="../../../media/{{ scene.dossier_presse }}">Dossier presse</a>
+		{% endif %}
+		{% if scene.dossier_peda %}
+		<a href="{{ scene.dossier_peda }}">Dossier pédagogique</a>
+		{% endif %}
+		{% if scene.archive_zip %}
+		<a href="{{ scene.archive_zip.url }}">Zip</a>
+		{% endif %}
+
+</p><a href="{% url 'catalog:detail_company' scene.company.id %}">{{ scene.company }}</a></p>
+<p><a href="{% url 'catalog:index' %}">retour au catalogue</a></p>
+
+{% endblock content %}

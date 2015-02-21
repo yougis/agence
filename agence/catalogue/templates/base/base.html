@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>L'ageNCe</title>
+    {% load staticfiles %}
+    {% block css %}
+    {% endblock css %}   
+  </head>
+  <body>
+    <div id="content">
+        {% block content %}
+        {% endblock content %}	
+    </div>
+    <div id="footer">        
+        {% block js %}
+        {% endblock js %}
+      </div>
+    </div>
+  </body>
+</html>

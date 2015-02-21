@@ -1,0 +1,42 @@
+{% extends "./base/base.html" %}
+
+{% block content %}
+    Nombre de companie : {{ company_list|length }}
+    {% for company in company_list %}
+
+        <h1>{{ company.name }}</h1>	
+	{% if company.resume %}
+	<p>{{ company.resume }}</p>
+	{% endif %}
+	{% if company.workshop_price %}
+	<p>{{ company.workshop_price }}</p>
+	{% endif %}
+	{% if company.workshop_term %}
+	<p>{{ company.workshop_term }}</p>
+	{% endif %}
+
+	<p>Nombre de spectacle : {{ company.scene_set.all|length }}</p>
+
+	{% for scene in company.scene_set.all %}
+		
+		<li><a href="{% url 'catalog:detail_scene' scene.id %}">{{ scene.title }}</a></li>
+		{% if scene.synops %}
+		<p>{{ scene.synops|truncatewords:"10" }}</p>
+		{% endif %}
+		{% if scene.scene_cat %}
+			{% for categories in scene.scene_cat.all %}
+    			<p>{{ categories }}</p>
+			{% endfor %}
+		{% endif %}
+		{% if scene.duration %}
+		<p>{{ scene.duration.hour }} h et {{ scene.duration.minute }} min ( {{ scene.duration}} )</p>
+		{% endif %}
+
+    	{% empty %}
+    	<p>Désolé, aucun spectacle n'est disponible</p>
+	{% endfor %}
+		
+    {% empty %}
+    <p>>Désolé, aucune compagnie n'est disponible</p>
+    {% endfor %}
+{% endblock content %}
