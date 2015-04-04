@@ -12,7 +12,7 @@ class Age(models.Model):
     category = models.CharField(max_length=200)
 
     def __unicode__(self):
-	return self.category
+	   return self.category
 
 class Duration(models.Model):
     hour = models.IntegerField(blank=True, null=True)
@@ -20,32 +20,57 @@ class Duration(models.Model):
     condition = models.CharField(max_length=200, blank=True, null=True)    
 
     def __unicode__(self):
-	return self.condition
+    	hour = str(self.hour)
+    	minute = str(self.minute)
+    	if self.hour != None:
+            hour = str(self.hour)
+            if self.hour > 1 and self.hour != 0:
+                descH = "heures"
+            else:
+                descH = "heure"
+        else:
+            hour = ""
+            descH = ""
+        if self.minute  != None:
+            minute = str(self.minute)
+            if self.minute > 1 and self.minute != 0:
+                descM = "minutes"
+            else:
+                descM = "minute"
+        else:
+            minute = ""
+            descM = ""
+        if self.condition == None and self.hour == None and self.minute == None :
+            duration = ""
+        else:
+            duration = " ".join([hour,descH, minute,descM, self.condition])
+        return duration
 
 class Partnership(models.Model):
     name = models.CharField(max_length=200)
     logo = models.ForeignKey(Photo, blank=True, null=True)
+    url = models.CharField(blank=True, max_length=200, null=True)
     
     def __unicode__(self):
-	return self.name
+	   return self.name
 
 class Company(models.Model):
     name = models.CharField(max_length=200)
-    resume = models.CharField(blank=True, max_length=2000, null=True)
+    resume = models.TextField(blank=True, null=True)
+    workshop_descr = models.TextField(blank=True, null=True)
     workshop_price = models.IntegerField(blank=True, null=True)
     workshop_term = models.CharField(blank=True, max_length=200, null=True)
     logo = models.ForeignKey(Photo, blank=True, null=True)
     photo_gallery = models.ForeignKey(Gallery, blank=True, null=True)
 
     def __unicode__(self):
-           return self.name
-
-
+    	return self.name
+  
 class Scene(models.Model):
     company = models.ForeignKey(Company)
     title = models.CharField(max_length=200, null=True)
     scene_cat =  models.ManyToManyField(SceneCat, blank=True, null=True)
-    synops = models.CharField(blank=True, max_length=2000, null=True)
+    synops = models.TextField(blank=True, null=True)
     interpret = models.CharField(blank=True, max_length=500, null=True)
     age = models.ForeignKey(Age, blank=True, null=True)
     duration = models.ForeignKey(Duration, blank=True, null=True)
@@ -59,6 +84,11 @@ class Scene(models.Model):
     dossier_presse = models.FileField(upload_to="dossiers_presse/", null=True, blank=True)
     dossier_peda = models.FileField(upload_to="dossiers_peda/", null=True, blank=True)
     archive_zip = models.FileField(upload_to="archives_zip/", null=True, blank=True)
+    technic_file = models.FileField(upload_to="fiche_tech/", null=True, blank=True)
+    full_jauge = models.IntegerField(blank=True, null=True)
+    plateau_min_size = models.IntegerField(blank=True, null=True)
+    representation_site = models.TextField(blank=True, null=True)
+    electric_need = models.CharField(blank=True, max_length=200, null=True)
  
     def __unicode__(self):             
         return self.title
