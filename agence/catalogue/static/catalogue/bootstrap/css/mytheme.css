@@ -1,0 +1,124 @@
+.categories {
+color: #333;
+text-shadow: none;
+background-color: #fff;
+border: 1px solid #fff;
+border-top-left-radius: 4px;
+border-top-right-radius: 4px;
+}
+
+
+/*Side bar */
+
+.list-group-item-yogis {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #2D2D2D;
+  border: 1px solid #000;
+}
+.nav-yogis{
+  position: fixed;
+  top:0;
+  right: 0;
+  left: 0;
+  min-height: 70px;
+  z-index: 1030;
+  background-color: #333;
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.9);
+          box-shadow: inset 0 0 100px rgba(0,0,0,.9);
+}
+
+.list-group-item-yogis:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.list-group-item-yogis:last-child {
+  margin-bottom: 10px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.list-group-item-yogis > img,
+.list-group-item-yogis > a > img{
+  width: 100px; 
+  height: 100px; 
+  margin-right: 15px;
+  
+}
+
+//
+// Jumbotron-yogis
+// --------------------------------------------------
+
+
+.jumbotron-yogis {
+  padding: 30px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #eee;
+}
+.jumbotron-yogis h1,
+.jumbotron-yogis .h1 {
+  color: inherit;
+}
+.jumbotron-yogis p {
+  margin-bottom: 15px;
+  font-size: 21px;
+  font-weight: 200;
+}
+.container .jumbotron-yogis {
+  border-radius: 6px;
+}
+.jumbotron-yogis .container {
+  max-width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .jumbotron-yogis {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  .container .jumbotron-yogis {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+  .jumbotron-yogis h1,
+  .jumbotron-yogis .h1 {
+    font-size: 63px;
+  }
+}
+
+//
+// thumbnail-yogis
+// --------------------------------------------------
+
+.thumbnail-yogis {
+  display: block;
+  padding: 4px;
+  margin-bottom: 12px;
+  margin-right: 0px;
+  line-height: 1.42857143;
+  background-color: #2D2D2D;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+}
+.thumbnail-yogis > img,
+.thumbnail-yogis a > img {
+  margin-right: auto;
+  margin-left: auto;
+}
+a.thumbnail-yogis:hover,
+a.thumbnail-yogis:focus,
+a.thumbnail-yogis.active {
+  border-color: #428bca;
+}
+.thumbnail-yogis .caption {
+  padding: 9px;
+  color: #2D2D2D;
+}
+
+
+

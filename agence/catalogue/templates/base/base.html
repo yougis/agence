@@ -2,19 +2,63 @@
 <html>
   <head>
     <title>L'ageNCe</title>
-    {% load staticfiles %}
-    {% block css %}
-    {% endblock css %}   
+     
   </head>
   <body>
-    <div id="content">
+  <div class="nav-yogis"></div>
+  {% block container %}
+	<div id="container"  class="site-wrapper" >	
+        
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">AgeNCe</h3>
+              <nav>
+                <ul class="nav masthead-nav" >
+                  <li><a href="/">Accueil</a></li>
+                  <li><a href="{% url 'catalog:index' %}">Catalogue</a></li>
+                  <li><a href="#">Contact</a></li>
+                  <li><a href="#">Newsletter</a></li>
+                </ul>
+              </nav>
+            </div><!-- class="inner" -->
+          </div><!-- "masthead clearfix" -->
+         {% block home %}
+         {% endblock home %}
+		    </div><!-- class="cover-container"-->
+      </div><!-- class="site-wrapper-inner"-->
+		</div><!-- class="site-wrapper"-->     
+   
+   {% endblock container %}
+    <div class="container-fluid-yogis" id="content" >
         {% block content %}
-        {% endblock content %}	
-    </div>
-    <div id="footer">        
+        {% endblock content %}
+    </div><!-- container-fluid-yogis content -->
+     
+		<div id="footer">
+        {% block footer %}
+        {% include "./base/footer.html" %}
+        {% endblock %}
+        {% load staticfiles %}
+    	  {% block css %}
+   			<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/bootstrap.css' %}"/>
+   			<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/carousel.css' %}" />
+				<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/offcanvas.css' %}" />
+				<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/cover.css' %}">
+				<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/mytheme.css' %}">
+    		{% endblock css %}  
         {% block js %}
-        {% endblock js %}
-      </div>
-    </div>
+        <script src="{% static 'catalogue/bootstrap/jquery/1.11.2/jquery-1.11.2.min.js' %}" ></script>
+        <script src="{% static 'catalogue/bootstrap/js/bootstrap.js' %}" ></script>
+        <script src="{% static 'catalogue/bootstrap/js/offcanvas.js' %}" ></script>
+        {% endblock %}
+    </div><!-- footer -->	
+		
+  </div><!-- container class="site-wrapper"  -->
   </body>
 </html>
+
+

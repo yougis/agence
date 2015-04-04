@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>L'ageNCe</title>
+     
+  </head>
+  <body>
+  {% block container %}
+	<div id="container" >
+		
+        
+      <div id="header">
+    		<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      		<div class="container">
+        		<div class="navbar-header">
+				      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+				      <a class="navbar-brand" href="/">AgeNCe</a>
+				    </div><!-- /.nav-header -->
+				    
+		      	<div class="collapse navbar-collapse">
+				      <ul class="nav navbar-nav">
+				        <li class="{% block link_home_class %}{% endblock %}"><a href="{% url 'catalog:index' %}">Catalogue</a></li>
+				      </ul>
+		  	    </div><!-- /.nav-collapse -->
+		  	          
+      		</div><!-- /.container -->
+      	</div><!-- /.navbar -->
+    	</div><!-- /.header -->
+     
+    <div class="container-fluid" id="content">
+        {% block content %}
+        {% endblock content %}
+    </div><!-- content -->
+   {% endblock container %}
+     
+		<div id="footer">
+        {% block footer %}
+        {% include "./base/footer.html" %}
+        {% endblock %}
+        {% load staticfiles %}
+    		{% block css %}
+   			<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/bootstrap.css' %}"/>
+   			<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/carousel.css' %}" />
+				<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/offcanvas.css' %}" />
+    		{% endblock css %}  
+        {% block js %}
+        <script src="{% static 'catalogue/bootstrap/jquery/1.11.2/jquery-1.11.2.min.js' %}" ></script>
+        <script src="{% static 'catalogue/bootstrap/js/bootstrap.js' %}" ></script>
+        <script src="{% static 'catalogue/bootstrap/js/offcanvas.js' %}" ></script>
+        {% endblock %}
+      </div><!-- footer -->	
+		
+  </div><!-- container -->
+  </body>
+</html>
+
+

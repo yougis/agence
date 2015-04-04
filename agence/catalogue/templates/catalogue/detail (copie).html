@@ -25,26 +25,21 @@
          </div>  <!-- jumbotron-->
          
   			<ul  class="list-inline" class="thumbnails"> 
-  			{% for scene in scene_list %}
-  			 <li class="col-xs-40 col-sm-20 col-md-5" style="width : 33%">
-				<div class="thumbnail-yogis" style="margin-left: 20%; margin-right: 20%; margin-bottom:20px"> 
-
+  			{% for scene in scene_list %}        	
 			{% if scene.photo_gallery.photos.all %}			
+        	<li class="col-xs-40 col-sm-20 col-md-5" style="width : 33%">
+					<div class="thumbnail-yogis" style="margin-left: 20%; margin-right: 20%; margin-bottom:20px"> 
          {% with scene.photo_gallery.photos.all|random as photo %}
 			<a href="{%  url 'catalog:detail_scene' scene.id %}" class="list-group-item-yogis" style="height:200px"><img class="img-circle" src="{{ photo.get_thumbnail_url  }}" class="thumbnail" alt="{{ photo.title }}" >
-			{% endwith %}
-			{% else %}
-			<a href="{%  url 'catalog:detail_scene' scene.id %}" class="list-group-item-yogis" style="height:200px"><img class="img-circle" src="{{ compagny.logo.get_thumbnail_url }}" class="thumbnail-yogis" alt="{{ company.logo.title }}">
-			{% endif %}
 			<h4>{{ scene.title }}</h4></a>		      
-
+			{% endwith %}
 				</div><!-- thumbnail -->
-       	
+        	{% endif %}
          {% endfor %}
   		</div><!-- col-xs-15 col-sm-10 col-md-5-->
   		
 			<div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar">
-				<img class="img-rounded" style="margin-top: 10px" src="{{ company.logo.get_thumbnail_url }}" class="thumbnail" alt="{{ company.logo.title }}">
+				<img src="{{ company.logo.get_thumbnail_url }}" class="thumbnail" alt="{{ company.logo.title }}">
 				
 			</div><!--col-xs-6 col-sm-3 sidebar-offcanvas-->
 		</div><!--row-->
@@ -53,27 +48,22 @@
 <div class="row">
     	 <div class="col-xs-15 col-sm-10 col-md-4">
     	 </div>
-    	 
  		<div class="col-xs-15 col-sm-10 col-md-5">
-      
-		<hr class="featurette-divider">
+      <hr class="featurette-divider">
+
       <div class="row featurette">
-      
         <div class="col-md-7">
           <h2 class="featurette-heading">
 		Ateliers proposés <span class="text-muted">en plus des spectacles</span></h2>
-          <p class="lead">
-         {% if company.workshop_describe %} {{ company.workshop_describe }}{% endif %}
-         {% if company.workshop_price %}<p>{{ company.workshop_price }}{% endif %}
-			{% if company.workshop_term %}{{ company.workshop_term }}{% endif %}</p>
+          <p class="lead">{% if company.workshop_describe %} {% endif %}
+          {% if company.workshop_price %}<p>{{ company.workshop_price }}{% endif %}
+		{% if company.workshop_term %}{{ company.workshop_term }}{% endif %}</p>
         </div>
-      
         <div class="col-md-5">
           <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
         </div>
       </div>
- 		 
- 		 
+
       <hr class="featurette-divider">
 
       <div class="row featurette">

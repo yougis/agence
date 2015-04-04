@@ -1,42 +1,65 @@
 {% extends "./base/base.html" %}
-
 {% block content %}
-    Nombre de companie : {{ company_list|length }}
-    {% for company in company_list %}
 
-        <h1><a href="{% url 'catalog:detail_company' company.id %}">{{ company.name }}</a></h1>
-	{% if company.resume %}
-	<p>{{ company.resume }}</p>
-	{% endif %}
-	{% if company.workshop_price %}
-	<p>{{ company.workshop_price }}</p>
-	{% endif %}
-	{% if company.workshop_term %}
-	<p>{{ company.workshop_term }}</p>
-	{% endif %}
+		<div class="col-xs-15 col-sm-10 col-md-4" style="position: fixed ; width : 600px">
+    	 	{% block carousel %}
+			{% include "./catalogue/carousel.html" %}
+			{% endblock carousel %}
+      </div><!--col--> 
 
-	<p>Nombre de spectacle : {{ company.scene_set.all|length }}</p>
+    <div class="row">
+    	 <div class="col-xs-15 col-sm-10 col-md-4">
+    	 </div>
+        <div class="col-xs-15 col-sm-10 col-md-5">
+          
+         	<div class="jumbotron-yogis">
+	            <h1>Les spectacles</h1>
+	          
+         	</div>  <!-- jumbotron-->
+  			<ul  class="list-inline" class="thumbnails-yogis"> 
 
-	{% for scene in company.scene_set.all %}
+
+				{% for company in company_list %}
+					{% for scene in company.scene_set.all %}
+						<li class="col-xs-40 col-sm-20 col-md-5" style="width : 33%">
+						
+						<div class="thumbnail-yogis" style="margin-left: 20%; margin-right: 20%; margin-bottom:20px" > 
+						<div>
+						{% if scene.photo_gallery.photos.all %}
+						 {% with scene.photo_gallery.photos.all|random as photo %}							 
+						 <a href="{%  url 'catalog:detail_scene' scene.id %}" class="list-group-item-yogis" style="height:200px"><img class="img-circle" src="{{ photo.get_thumbnail_url }}" class="thumbnail-yogis" alt="{{ company.logo.title }}">
+						 {% endwith %}
+						 {% else %}
+						 <a href="{%  url 'catalog:detail_scene' scene.id %}" class="list-group-item-yogis" style="height:200px"><img class="img-circle" src="{{ compagny.logo.get_thumbnail_url }}" class="thumbnail-yogis" alt="{{ company.logo.title }}">
+						{% endif %}
+						<h5>{{ scene.title }}</h5></a>
+						</div>
+					{% endfor %}	
+				{% empty %}
+				<p>Désolé, aucune compagnie n'est disponible</p>
+				{% endfor %}
+				</div><!-- thumbnail -->
+
+					
+		</div><!-- class="col-xs-12 col-sm-9-->
 		
-		<li><a href="{% url 'catalog:detail_scene' scene.id %}">{{ scene.title }}</a></li>
-		{% if scene.synops %}
-		<p>{{ scene.synops|truncatewords:"10" }}</p>
-		{% endif %}
-		{% if scene.scene_cat %}
-			{% for categories in scene.scene_cat.all %}
-    			<p>{{ categories }}</p>
-			{% endfor %}
-		{% endif %}
-		{% if scene.duration %}
-		<p>{{ scene.duration.hour }} h et {{ scene.duration.minute }} min ( {{ scene.duration}} )</p>
-		{% endif %}
-
-    	{% empty %}
-    	<p>Désolé, aucun spectacle n'est disponible</p>
-	{% endfor %}
-		
-    {% empty %}
-    <p>>Désolé, aucune compagnie n'est disponible</p>
-    {% endfor %}
+				<div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar">
+					<div class="jumbotron-yogis">
+	            <h3>Les compagnies</h3>
+	          
+         	</div>  <!-- jumbotron-->				
+					
+					{% for company in company_list %}
+							
+						<a href="{% url 'catalog:detail_company' company.id %}" class="list-group-item-yogis" style="margin-top:10px">
+						<img class="img-rounded" src="{{ company.logo.get_thumbnail_url }}" alt="{{ company.logo.title }}"></a>{{ company.name }}
+						
+					{% endfor %}
+				</div><!--col-xs-6 col-sm-3 sidebar-offcanvas-->
+	</div><!--/row-->
+ 
+ 
+  
 {% endblock content %}
+
+

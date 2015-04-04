@@ -1,79 +1,40 @@
 {% extends "./base/base.html" %}
 {% block content %}
 
-		<div class="col-xs-15 col-sm-10 col-md-4" style="position: fixed ; width : 600px">    	 	
-			{% block carousel %}
+		<div class="col-xs-15 col-sm-10 col-md-4" style="position: fixed ; width : 600px">
+    	 	{% block carousel %}
 			{% include "./catalogue/carousel.html" %}
 			{% endblock carousel %}
-      </div><!--col-->
-       
-      <div class="row">
+      </div><!--col--> 
+
+ 		<div class="row">
     	 <div class="col-xs-15 col-sm-10 col-md-4">
     	 </div>
         <div class="col-xs-15 col-sm-10 col-md-5">
 
 			<div class="jumbotron-yogis">
-				<h1>{{ company.name }}</h1>
-				{% if company.scene_set.all|length > 1 %}		
-				<p>{{ company.scene_set.all|length }} spectacles</p>
-				{% else %}
-				<p>{{ company.scene_set.all|length }} spectacle</p>
-				{% endif %}
-				{% if company.resume %}
-				<p>{{ company.resume }}</p>
-				{% endif %}	          
-         </div>  <!-- jumbotron-->
-         
-  			<ul  class="list-inline" class="thumbnails"> 
-  			{% for scene in scene_list %}
-  			 <li class="col-xs-40 col-sm-20 col-md-5" style="width : 33%">
-				<div class="thumbnail-yogis" style="margin-left: 20%; margin-right: 20%; margin-bottom:20px"> 
-
-			{% if scene.photo_gallery.photos.all %}			
-         {% with scene.photo_gallery.photos.all|random as photo %}
-			<a href="{%  url 'catalog:detail_scene' scene.id %}" class="list-group-item-yogis" style="height:200px"><img class="img-circle" src="{{ photo.get_thumbnail_url  }}" class="thumbnail" alt="{{ photo.title }}" >
-			{% endwith %}
-			{% else %}
-			<a href="{%  url 'catalog:detail_scene' scene.id %}" class="list-group-item-yogis" style="height:200px"><img class="img-circle" src="{{ compagny.logo.get_thumbnail_url }}" class="thumbnail-yogis" alt="{{ company.logo.title }}">
-			{% endif %}
-			<h4>{{ scene.title }}</h4></a>		      
-
-				</div><!-- thumbnail -->
-       	
-         {% endfor %}
-  		</div><!-- col-xs-15 col-sm-10 col-md-5-->
-  		
-			<div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar">
-				<img class="img-rounded" style="margin-top: 10px" src="{{ company.logo.get_thumbnail_url }}" class="thumbnail" alt="{{ company.logo.title }}">
-				
-			</div><!--col-xs-6 col-sm-3 sidebar-offcanvas-->
-		</div><!--row-->
-		
+			<h1>{{ scene.title }}</h1>
+			</div>  <!-- jumbotron-->
 <!-- START THE FEATURETTES -->
 <div class="row">
     	 <div class="col-xs-15 col-sm-10 col-md-4">
     	 </div>
-    	 
  		<div class="col-xs-15 col-sm-10 col-md-5">
-      
-		<hr class="featurette-divider">
+      <hr class="featurette-divider">
+
       <div class="row featurette">
-      
         <div class="col-md-7">
           <h2 class="featurette-heading">
 		Ateliers proposés <span class="text-muted">en plus des spectacles</span></h2>
-          <p class="lead">
-         {% if company.workshop_describe %} {{ company.workshop_describe }}{% endif %}
-         {% if company.workshop_price %}<p>{{ company.workshop_price }}{% endif %}
-			{% if company.workshop_term %}{{ company.workshop_term }}{% endif %}</p>
+          <p class="lead">{% if company.workshop_describe %} {% endif %}
+          {% if company.workshop_price %}<p>{{ company.workshop_price }}{% endif %}
+		{% if company.workshop_term %}{{ company.workshop_term }}{% endif %}</p>
         </div>
-      
         <div class="col-md-5">
           <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
         </div>
       </div>
- 		 
- 		 
+
       <hr class="featurette-divider">
 
       <div class="row featurette">
@@ -102,13 +63,49 @@
 		
 		
 		</div><!-- class="col-xs-12 col-sm-9-->
-      <!-- /END THE FEATURETTES -->
-
-
+      <!-- /END THE FEATURETTES -->			
 			
+		{% if scene.synops %}
+		<p>{{ scene.synops }}</p>
+		{% endif %}
 
-	
+		{% if scene.scene_cat %}
+			{% for categories in scene.scene_cat.all %}
+    			<p>{{ categories }}</p>
+			{% endfor %}
+		{% endif %}
+
+		{% if scene.duration %}
+		<p>{{ scene.duration.hour }} h et {{ scene.duration.minute }} min ( {{ scene.duration}} )</p>
+		{% endif %}
+		{% if scene.interpret %}
+		<p>{{ scene.interpret }}</p>
+		{% endif %}
+		{% if scene.teazer_url %}
+		<p>{{ scene.teazer_url }}</p>
+		{% endif %}
+		{% if scene.disponibility %}
+		<p>{{ scene.disponibility }}</p>
+		{% endif %}
+		{% if scene.dossier_presse %}
+		<a href="../../../media/{{ scene.dossier_presse }}">Dossier presse</a>
+		{% endif %}
+		{% if scene.dossier_peda %}
+		<a href="../../../media/{{ scene.dossier_peda }}">Dossier pédagogique</a>
+		{% endif %}
+		{% if scene.archive_zip %}
+		<a href="../../../media/{{ scene.archive_zip.url }}">Zip</a>
+		{% endif %}
+		  
+		  
+		  <div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar">
+				<img src="{{ company.logo.get_thumbnail_url }}" class="thumbnail" alt="{{ company.logo.title }}">
+				
+			</div><!--col-xs-6 col-sm-3 sidebar-offcanvas-->
+		</div><!--row-->
+		
+		
+
+</p><a href="{% url 'catalog:detail_company' scene.company.id %}">{{ scene.company }}</a></p>
 
 {% endblock content %}
-
-

@@ -1,0 +1,57 @@
+{% extends "./base/base.html" %}
+
+
+{% block content %}
+
+
+ <div class="container">
+
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>Les Compagnies</h1>
+           Nombre de companie : {{ company_list|length }}
+          </div>  
+  			<ul  class="list-inline" class="thumbnails"> 
+				{% for company in company_list %}
+					<li class="">
+					<div class="thumbnail"> 
+						<a href="{% url 'catalog:detail_company' company.id %}" class="list-group-item"><img class="img-circle" src="{{ company.logo.get_thumbnail_url }}" class="thumbnail" alt="{{ company.logo.title }}"><h3>{{ company.name }}</h3></a>
+
+						<p>Nombre de spectacle : {{ company.scene_set.all|length }}</p>
+		
+						{% empty %}
+						<p>>Désolé, aucune compagnie n'est disponible</p>
+						{% endfor %}
+					</div><!-- thumbnail -->
+		</div><!-- offcanvas-->
+		
+				<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+					{% for company in company_list %}
+					<div class="list-group">	
+						{% for scene in company.scene_set.all %}	
+		
+						<a href="{% url 'catalog:detail_scene' scene.id %}"class="list-group-item active">{{ scene.title }}</a>
+			
+						{% endfor %}  
+						{% empty %}
+						<p>>Désolé, aucune compagnie n'est disponible</p>
+						{% endfor %}
+							      
+					</div><!-- list-group -->
+				</div><!--/.sidebar-offcanvas-->
+	</div><!--/row-->
+  
+</div>  <!--/container-->
+  
+{% endblock content %}
+{% load staticfiles %}
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/offcanvas.css' %}" />
+{% endblock %}
+
