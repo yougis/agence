@@ -2,24 +2,24 @@
     ================================================== -->
    
 
-   
+<div class="col-xs-15 col-sm-10 col-md-4" style="position: fixed ; top:70px ;bottom: 0; padding-left: 0px;">      
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
-      <ol class="carousel-indicators">
+      <ol class="carousel-indicators" style="top:20px">
 
       	<!-- en fonction du nombre de compagnie -->
 
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-       {% if scene_list%}
-
-        {% for scene in scene_list %}
-		     {% if scene.photo_gallery.photos %} 
-			  <li data-target="#myCarousel" data-slide-to="{{scene.photo_gallery.photos.id}}"></li>
-			  {% endif %}
-		  {% endfor %} 
+       {% if scene_photo_list %}
+        {% for scene in scene_photo_list %}
+		     <!-- {% if scene.photo_gallery.photos %}   -->
+			  <li data-target="#myCarousel" data-slide-to="{{forloop.counter}}"></li>
+			  <!-- {% endif %} -->
+		  {% endfor %}
+		  
 		 {% else %}<!-- cas de la page spectacle -->
-		 	{% for photo in scene.photo_gallery.photos.all %}			
-		     	<li data-target="#myCarousel" data-slide-to="{{scene.photo_gallery.photos.id}}"></li>    
+		 	{% for photo in scene.photo_gallery.photos.all %}			 				
+		     	<li data-target="#myCarousel" data-slide-to="{{forloop.counter}}"></li>    
 		     {% endfor %}
 		 {% endif %}
       </ol>
@@ -73,6 +73,6 @@
         <span class="sr-only">Suivant</span>
       </a>
     </div><!-- /.carousel -->
-    
+</div><!--col-->    
     
        

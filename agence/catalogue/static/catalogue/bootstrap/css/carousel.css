@@ -53,7 +53,8 @@ body {
 
 /* Declare heights because of positioning of img element */
 .carousel .item {
-  height: 800px;
+  height:1000px;
+
 
   background-color: #777;
 }

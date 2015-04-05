@@ -1,11 +1,11 @@
 {% extends "./base/base.html" %}
 {% block content %}
 
-		<div class="col-xs-15 col-sm-10 col-md-4" style="position: fixed ; width : 600px">
-    	 	{% block carousel %}
-			{% include "./catalogue/carousel.html" %}
-			{% endblock carousel %}
-      </div><!--col--> 
+
+{% block carousel %}
+{% include "./catalogue/carousel.html" %}
+{% endblock carousel %}
+
 
  		<div class="row">
     	 <div class="col-xs-15 col-sm-10 col-md-4">
@@ -41,8 +41,51 @@
 			</p>
 			{% endif %}
 		
-		  </div> <!--"col-xs-15 col-sm-10 col-md-5"-->
-		  <div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar">
+		  
+		  
+
+<!-- START THE FEATURETTES -->
+
+
+
+      <div class="row featurette"></div>	
+       {% if scene.teazer_url %}
+       <hr class="featurette-divider">
+
+     
+		<div class="row featurette">
+			 <a href="{{ scene.teazer_url }}">
+	
+        <div class="col-md-7">
+          <h2 class="featurette-heading">
+		Teaser<span class="text-muted"> du spectacle</span></h2>
+          
+         
+         
+        </div>
+        
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
+      </div> 
+      {% endif %}
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+      </div> 
+</div> <!--"col-xs-15 col-sm-10 col-md-5"-->
+		
+
+<!-- /END THE FEATURETTES -->		
+		<div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar">
 		  	<div>
 		   <a href="{% url 'catalog:detail_company' scene.company.id %}"><h4>{{ scene.company }}</h4>
 		   <p><img class="img-rounded" src="{{ scene.company.logo.get_thumbnail_url }}" class="thumbnail" alt="{{ scene.company.logo.title }}"></p>
@@ -77,48 +120,7 @@
 				</li>
 			</ul>
 			</div> <!-- class="media"-->	
-			</div><!--col-xs-6 col-sm-2 sidebar-offcanvas-->
-		</div><!--row-->
-<!-- START THE FEATURETTES -->
-
-<div class="row">
-    	 <div class="col-xs-15 col-sm-10 col-md-4"></div>
- 		<div class="col-xs-15 col-sm-10 col-md-5">
-      {% if scene.teazer_url %}	<hr class="featurette-divider">
-
-		<div class="row featurette">
-			 <a href="{{ scene.teazer_url }}">
-	
-        <div class="col-md-7">
-          <h2 class="featurette-heading">
-		Teaser<span class="text-muted"> du spectacle</span></h2>
-          
-         
-         
-        </div>
-        
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div> 
-      {% endif %}
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-      </div>    
-		
-		
+</div> <!-- col-xs-6 col-sm-2 sidebar-offcanvas -->
 </div><!-- row-->
-<!-- /END THE FEATURETTES -->		
-		
-
 
 {% endblock content %}

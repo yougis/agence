@@ -1,11 +1,9 @@
 {% extends "./base/base.html" %}
 {% block content %}
 
-		<div class="col-xs-15 col-sm-10 col-md-4" style="position: fixed ; width : 600px">
-    	 	{% block carousel %}
-			{% include "./catalogue/carousel.html" %}
-			{% endblock carousel %}
-      </div><!--col--> 
+{% block carousel %}
+{% include "./catalogue/carousel.html" %}
+{% endblock carousel %}
 
     <div class="row">
     	 <div class="col-xs-15 col-sm-10 col-md-4">

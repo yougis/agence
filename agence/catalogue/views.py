@@ -6,13 +6,16 @@ def home(request):
 	 return render(request, 'catalogue/home.html',)
 
 
-def index(request):		   
-    
-    company_list = Company.objects.order_by('name')
-    scene_list = Scene.objects.order_by('title')
-    cover = Photo.objects.filter(title='cover')
-    
-    return render(request, 'catalogue/index.html', {'company_list':  company_list, 'scene_list': scene_list, 'cover': cover})
+def index(request):
+	company_list = Company.objects.order_by('name')
+	scene_list = Scene.objects.order_by('title')
+	cover = Photo.objects.filter(title='cover')
+	scene_photo_list = []
+	for scene in scene_list:
+		if scene.photo_gallery:
+			if scene.photo_gallery.photos:
+				scene_photo_list.append(scene)
+	return render(request, 'catalogue/index.html', {'company_list':  company_list, 'scene_list': scene_list, 'scene_photo_list':scene_photo_list, 'cover': cover})
 
 def detail_company(request, company_id):
 

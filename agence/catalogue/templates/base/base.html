@@ -28,15 +28,17 @@
           </div><!-- "masthead clearfix" -->
          {% block home %}
          {% endblock home %}
+         
 		    </div><!-- class="cover-container"-->
+		    <div class="container-fluid-yogis" id="content" >
+        {% block content %}
+        {% endblock content %}
+   		 </div><!-- container-fluid-yogis content -->
       </div><!-- class="site-wrapper-inner"-->
 		</div><!-- class="site-wrapper"-->     
    
    {% endblock container %}
-    <div class="container-fluid-yogis" id="content" >
-        {% block content %}
-        {% endblock content %}
-    </div><!-- container-fluid-yogis content -->
+    
      
 		<div id="footer">
         {% block footer %}
