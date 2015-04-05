@@ -1,0 +1,8 @@
+{% extends "./base/base.html" %}
+
+{% block content %}
+{{ block.super }}
+<p>A propos de l'application.</p>
+{% endblock %}
+
+{% block link_about_class %}active{% endblock %}

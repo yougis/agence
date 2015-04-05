@@ -1,0 +1,65 @@
+{% extends "./base/base.html" %}
+{% block content %}
+
+		<div class="col-xs-15 col-sm-10 col-md-4" style="position: fixed ; top:0 ;bottom: 0; padding-left: 0px;">   
+    	 	{% block carousel %}
+			{% include "./catalogue/carousel.html" %}
+			{% endblock carousel %}
+      </div><!--col--> 
+
+    <div class="row">
+    	 <div class="col-xs-15 col-sm-10 col-md-4">
+    	 </div>
+        <div class="col-xs-15 col-sm-10 col-md-5">
+          
+         	<div class="jumbotron-yogis">
+	            <h1>Les spectacles</h1>
+	          
+         	</div>  <!-- jumbotron-->
+  			<ul  class="list-inline" class="thumbnails-yogis"> 
+
+
+				{% for company in company_list %}
+					{% for scene in company.scene_set.all %}
+						<li class="col-xs-40 col-sm-20 col-md-5" style="width : 33%">
+						
+						<div class="thumbnail-yogis" style="margin-left: 20%; margin-right: 20%; margin-bottom:20px" > 
+						<div>
+						{% if scene.photo_gallery.photos.all %}
+						 {% with scene.photo_gallery.photos.all|random as photo %}							 
+						 <a href="{%  url 'catalog:detail_scene' scene.id %}" class="list-group-item-yogis" style="height:200px"><img class="img-circle" src="{{ photo.get_thumbnail_url }}" class="thumbnail-yogis" alt="{{ company.logo.title }}">
+						 {% endwith %}
+						 {% else %}
+						 <a href="{%  url 'catalog:detail_scene' scene.id %}" class="list-group-item-yogis" style="height:200px"><img class="img-circle" src="{{ compagny.logo.get_thumbnail_url }}" class="thumbnail-yogis" alt="{{ company.logo.title }}">
+						{% endif %}
+						<h5>{{ scene.title }}</h5></a>
+						</div>
+					{% endfor %}	
+				{% empty %}
+				<p>Désolé, aucune compagnie n'est disponible</p>
+				{% endfor %}
+				</div><!-- thumbnail -->
+
+					
+		</div><!-- class="col-xs-12 col-sm-9-->
+		
+				<div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar">
+					<div class="jumbotron-yogis">
+	            <h3>Les compagnies</h3>
+	          
+         	</div>  <!-- jumbotron-->				
+					
+					{% for company in company_list %}
+							
+						<a href="{% url 'catalog:detail_company' company.id %}" class="list-group-item-yogis" style="margin-top:10px">
+						<img class="img-rounded" src="{{ company.logo.get_thumbnail_url }}" alt="{{ company.logo.title }}"></a>{{ company.name }}
+						
+					{% endfor %}
+				</div><!--col-xs-6 col-sm-3 sidebar-offcanvas-->
+	</div><!--/row-->
+ 
+ 
+  
+{% endblock content %}
+
+
