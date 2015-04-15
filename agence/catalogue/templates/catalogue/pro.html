@@ -1,0 +1,20 @@
+{% extends "./base/base.html" %}
+
+{% load render_table from django_tables2 %}
+{% block content %}
+
+<div class="container">
+<div class="row">
+	{% if pro == True %}
+	 <p><a class="btn btn-xs btn-default" style="text-align:right" href="../proLight" role="button">Voir formule réduite</a></p>
+	{% else %}
+	<p><a class="btn btn-xs btn-default" href="../pro" role="button">Voir formule complète</a></p>
+	{% endif %}
+</div>
+
+<div class="row">
+	{% render_table scene_table %}
+
+</div>
+</div>
+{% endblock content %}

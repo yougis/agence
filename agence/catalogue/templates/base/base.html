@@ -20,6 +20,7 @@
                 <ul class="nav masthead-nav" >
                   <li><a href="/">Accueil</a></li>
                   <li><a href="{% url 'catalog:index' %}">Catalogue</a></li>
+                  <li><a href="{% url 'catalog:pro' %}">Acces Pro</a></li>
                   <li><a href="#">Contact</a></li>
                   <li><a href="#">Newsletter</a></li>
                 </ul>
@@ -51,6 +52,7 @@
 				<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/offcanvas.css' %}" />
 				<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/cover.css' %}">
 				<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/mytheme.css' %}">
+				<link rel="stylesheet" type="text/css" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
     		{% endblock css %}  
         {% block js %}
         <script src="{% static 'catalogue/bootstrap/jquery/1.11.2/jquery-1.11.2.min.js' %}" ></script>

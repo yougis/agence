@@ -10,14 +10,14 @@ def home(request):
 @login_required
 def pro(request):
 	 scene_table = SceneTableFull(Scene.objects.order_by('title'))
-	 RequestConfig(request, paginate=False).configure(scene_table)
+	 RequestConfig(request, paginate=False)).configure(scene_table)
 	 pro = True
 	 return render(request, 'catalogue/pro.html', {'scene_table': scene_table, 'pro':pro})
 
 @login_required
 def proLight(request):
 	 scene_table = SceneTableLight(Scene.objects.order_by('title'))
-	 RequestConfig(request, paginate=False).configure(scene_table)
+	 RequestConfig(request, paginate=False)).configure(scene_table)
 	 pro = False
 	 return render(request, 'catalogue/pro.html', {'scene_table': scene_table, 'pro':pro})
 

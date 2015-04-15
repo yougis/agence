@@ -90,7 +90,7 @@ class Scene(models.Model):
     full_jauge = models.IntegerField(blank=True, null=True, verbose_name="Jauge")
     plateau_min_size = models.IntegerField(blank=True, null=True, verbose_name="Plateau")
     representation_site = models.TextField(blank=True, null=True, verbose_name="Lieu de représentation")
-    electric_need = models.CharField(blank=True, max_length=200, null=True, verbose_name="Electricité")
+    electric_need = models.CharField(blank=True, max_length=200, null=True, verbose_name="Electricite")
  
     def __unicode__(self):             
         return self.title
