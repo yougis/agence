@@ -1,8 +1,16 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 from catalogue.models import Company, Scene, SceneCat, Age, Duration, Partnership
 
 
-class SceneAdmin(admin.ModelAdmin):
+class SceneResource(resources.ModelResource):
+
+    class Meta:
+        model = Scene
+
+class SceneAdmin(ImportExportModelAdmin):
+    resource_class = SceneResource
     list_display = ('title','company')
     fieldsets = [
         (None, {'fields': [
@@ -40,11 +48,20 @@ class SceneAdmin(admin.ModelAdmin):
     ]
 
 
-admin.site.register(Company)
+
+class CompanyResource(resources.ModelResource):
+
+    class Meta:
+        model = Company
+        
+        
+class CompanyAdmin(ImportExportModelAdmin):
+    resource_class = CompanyResource
+    pass
+
+admin.site.register(Company, CompanyAdmin)
 admin.site.register(Scene, SceneAdmin)
 admin.site.register(SceneCat)
 admin.site.register(Age)
 admin.site.register(Duration)
 admin.site.register(Partnership)
-
-
