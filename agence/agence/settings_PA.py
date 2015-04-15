@@ -41,7 +41,9 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'photologue',
     'sortedm2m',
-    'catalogue',
+    'catalogue',   
+    'django_tables2',
+    'widget_tweaks',
 )
 
 SITE_ID = 1
@@ -54,6 +56,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+'django.contrib.auth.context_processors.auth',
+"django.core.context_processors.request",
 )
 
 ROOT_URLCONF = 'agence.urls'
