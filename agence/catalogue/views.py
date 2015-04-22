@@ -4,8 +4,7 @@ from django_tables2   import RequestConfig
 from catalogue.models import Company, Scene, SceneTableFull, SceneTableLight
 from photologue.models import Gallery, Photo
 
-def home(request):
-	 return render(request, 'catalogue/home.html',)
+
 
 @login_required
 def pro(request):
@@ -20,6 +19,9 @@ def proLight(request):
 	 RequestConfig(request, paginate=False).configure(scene_table)
 	 pro = False
 	 return render(request, 'catalogue/pro.html', {'scene_table': scene_table, 'pro':pro})
+
+def newsletter(request):
+	return render(request, 'catalogue/newsletter.html')
 
 def index(request):
 	company_list = Company.objects.order_by('name')
