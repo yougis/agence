@@ -37,17 +37,17 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'django.contrib.sites',
     'django.contrib.sitemaps',
-    #'django_extensions',
+    'django.contrib.flatpages',
+
     'photologue',
     'sortedm2m',
     'catalogue',    
-    #'sorl.thumbnail',
     'django_tables2',
     'widget_tweaks',
-    'import_export',
-    
+    'import_export',    
 )
 
 SITE_ID = 1
