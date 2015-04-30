@@ -1,14 +1,10 @@
 {% extends "./base/base.html" %}
-
-
-
 {% block home %}
-
-          <div class="inner cover">
-            <h1 class="cover-heading">{{ flatpage.title }}</h1>
-            <p class="lead">{{ flatpage.content }}</p>
-            <p class="lead">
-              <a href="/catalog" class="btn btn-lg btn-default">Entrer</a>
-            </p>
-          </div>
+<div class="inner cover" >
+	<h1 class="cover-heading">{{ flatpage.title }}</h1>
+	<p class="lead">{{ flatpage.content }}</p>
+	<p class="lead">
+		<a href="/catalog" class="btn btn-lg btn-default">Entrer</a>
+	</p>
+</div>
 {% endblock home %}   
