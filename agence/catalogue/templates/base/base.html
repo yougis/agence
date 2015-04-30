@@ -1,68 +1,68 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <title>L'ageNCe</title>
-     
-  </head>
-  <body>
-  <div class="nav-yogis"></div>
-  {% block container %}
-	<div id="container"  class="site-wrapper" >	
-        
-    <div class="site-wrapper">
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">AgeNCe</h3>
-              <nav>
-                <ul class="nav masthead-nav" >
-                  <li><a href="{% url 'home' %}">Accueil</a></li>
+<head>
+  <title>L'ageNCe</title>
+</head>
+<body style="overflow-x: visible; padding-top: 0px;">
+ 
+  <nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom: 0px;">
+    <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'home' %}">AgeNCe</a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">                  
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              </div>
+              <div id="navbar" class="navbar-collapse collapse" >
+                <ul class="nav navbar-nav right" >                  
                   <li><a href="{% url 'catalog:index' %}">Catalogue</a></li>
                   <li><a href="{% url 'catalog:pro' %}">Acces Pro</a></li>
                   <li><a href="{% url 'contact' %}">Contact</a></li>
                   <li><a href="{% url 'catalog:newsletter' %}">Newsletter</a></li>
                 </ul>
-              </nav>
-            </div><!-- class="inner" -->
-          </div><!-- "masthead clearfix" -->
-         {% block home %}
-         {% endblock home %}
-         
-		    </div><!-- class="cover-container"-->
-		    <div class="container-fluid-yogis" id="content" >
+              </div>
+            </div>
+  </nav>
+            
+  <div id="container"  class="site-wrapper" style="padding-top: 50px;">      
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+        
+              
+        {% block home %}
+        {% endblock home %}
+        </div><!-- class="cover-container"-->
         {% block content %}
         {% endblock content %}
-   		 </div><!-- container-fluid-yogis content -->
       </div><!-- class="site-wrapper-inner"-->
-	</div><!-- class="site-wrapper"-->     
-   
-   {% endblock container %}
-    
+    </div><!-- class="site-wrapper"-->     
+    <div id="footer" style=" padding-bottom: 10px; ">
+      {% block footer %}
+      {% include "./base/footer.html" %}
+      {% endblock %}
+      {% load staticfiles %}
+      {% block css %}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/carousel.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/offcanvas.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/cover.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/mytheme.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
+      {% endblock css %}  
+      {% block js %}
      
-		<div id="footer">
-        {% block footer %}
-        {% include "./base/footer.html" %}
-        {% endblock %}
-        {% load staticfiles %}
-    	  {% block css %}
-   			<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/bootstrap.css' %}"/>
-   			<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/carousel.css' %}" />
-				<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/offcanvas.css' %}" />
-				<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/cover.css' %}">
-				<link rel="stylesheet" type="text/css" href="{% static 'catalogue/bootstrap/css/mytheme.css' %}">
-				<link rel="stylesheet" type="text/css" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
-    		{% endblock css %}  
-        {% block js %}
-        <script src="{% static 'catalogue/bootstrap/jquery/1.11.2/jquery-1.11.2.min.js' %}" ></script>
-        <script src="{% static 'catalogue/bootstrap/js/bootstrap.js' %}" ></script>
-        <script src="{% static 'catalogue/bootstrap/js/offcanvas.js' %}" ></script>
-        {% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+      <script src="{% static 'catalogue/bootstrap/js/offcanvas.js' %}" ></script>
+      {% endblock %}
     </div><!-- footer -->	
-		
+
   </div><!-- container class="site-wrapper"  -->
-  </body>
+</body>
 </html>
 
 
